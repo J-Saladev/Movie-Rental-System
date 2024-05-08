@@ -15,8 +15,8 @@
                         Movies
                         </a>
                         <div class="dropdown-menu bg-dark " aria-labelledby="navbarDropdownMenuLink">
-                        <router-link to="/add/Movie " class="dropdown-item text-light">Add</router-link>
-                        <router-link to="/view/Movie" class="dropdown-item text-light">View</router-link>
+                        <router-link to="/add/movies " class="dropdown-item text-light">Add</router-link>
+                        <router-link to="/view/movies" class="dropdown-item text-light">View</router-link>
                         
                         </div>
                     </li>
@@ -25,8 +25,8 @@
                         Users
                         </a>
                         <div class="dropdown-menu bg-dark " aria-labelledby="navbarDropdownMenuLink">
-                        <router-link to="/add/User " class="dropdown-item text-light">Add</router-link>
-                        <router-link to="/view/User" class="dropdown-item text-light">View</router-link>
+                        <router-link to="/add/users " class="dropdown-item text-light">Add</router-link>
+                        <router-link to="/view/users" class="dropdown-item text-light">View</router-link>
                         
                         </div>
                     </li>
@@ -35,8 +35,8 @@
                         Rentals
                         </a>
                         <div class="dropdown-menu bg-dark " aria-labelledby="navbarDropdownMenuLink">
-                        <router-link to="/add/Rental " class="dropdown-item text-light">Add</router-link>
-                        <router-link to="/view/Rental" class="dropdown-item text-light">View</router-link>
+                        <router-link to="/add/rentals " class="dropdown-item text-light">Add</router-link>
+                        <router-link to="/view/rentals" class="dropdown-item text-light">View</router-link>
                         
                         </div>
                     </li>
@@ -48,6 +48,6 @@
 </template>
 
 <script setup>
-
+    
 
 </script>

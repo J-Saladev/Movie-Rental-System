@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="form-container">
-                    <form id="form" class="form" >
+                    <form section="form" class="form" >
                         <div v-for="item in table" :key="item">
                         <div v-if="item == 'createdAt' || item == 'updatedAt'"></div>
                         <div class="form-group" v-else>
@@ -25,29 +25,69 @@
 
 <script setup>
 import axios from 'axios'
-import { ref} from 'vue'
-const props = defineProps({
-    section: String
+import { ref, onMounted, watch} from 'vue'
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
+const name = ref(route.params.section) 
+const table = ref([])
+onMounted(async () => {
+    loadData(name.value).then((data) => {
+        table.value = data
+    })
+    
 })
-console.log(props.section);
+
+watch(route.params, async (newSection, oldSection) => {
+    console.log('page change')
+    name.value = route.params.section
+    loadData(newSection).then((data) => {
+        table.value = data
+    }).catch((error) => {
+        console.log(error)
+    })
+
+})
 
 
 
-const example = ref({ name: 'Example', address: '123 Main St', telephone: '123-456-7890', email: 'XJ4X7@example.com', zipcode: '12345', createdAt: new Date(), updatedAt: new Date()})
 
-const table = Object.keys(example.value)
-table.slice(0, -1)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 let inputobject = ref({})
 
+async function loadData(section) {
+  try {
+    const response = await axios.get(`http://localhost:3000/${section}`)
+    const oneRow = response.data[0]
+    const tableData = Object.keys(oneRow)
+    
+    return tableData
+  } catch (error) {
+    console.log(error)
+    return []
+  }
+}
 
 const HandleSubmit = (event) => {
     event.preventDefault()
     let form = document.getElementById('form')
     
-    if (!form.checkValidity()) {
-        form.classList.add('was-validated')
-        form.reportValidity()
+    if (!form.checkValsectionity()) {
+        form.classList.add('was-valsectionated')
+        form.reportValsectionity()
         return
     }
     console.log(inputobject.value);

@@ -5,8 +5,9 @@
     <navBar></navBar>
   </header> 
   
+  <Suspense>
   <RouterView id="main" />
-  
+  </Suspense>
   <footer > 
     <footBar></footBar>
   </footer>
@@ -16,8 +17,12 @@
 
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+
 import navBar from './components/modules/nav-bar.vue'
 import footBar from './components/modules/foot-bar.vue'
+
+
+
 
 
 
@@ -34,6 +39,14 @@ import footBar from './components/modules/foot-bar.vue'
   background-size: cover;
   height: 100%;
   
+ }
+ .dropdown-menu{
+
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    
+ }
+ .dropdown-item:hover{
+    background-color: #1e1f21;
  }
 
 </style>
