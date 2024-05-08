@@ -6,4 +6,43 @@ This is a full stack application using Vue.JS, Express.JS, and MySQL.
 
 ## How to use
 
-**** Currently in progress ****
+-----------------------------------
+### Install
+Begin by cloning my project from github onto your device.
+```mdkir Movie-Rental-System```
+```sh git clone https://github.com/J-Saladev/Movie-Rental-System.git```
+
+Make sure you have mySql and NodeJS Installed.
+For better instruction on that you can visit 
+MySQL Installation
+-----------------
+https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/
+
+For NodeJS Installation
+-----------------
+https://nodejs.org/en/download/current/
+
+
+## Setting Up Backend
+(EVERYTHING IN HERE IS IN THE BACKEND FILE)
+Go into config.json under the config folder and change the username and password to your MySQL credentials.
+Do the same in the db.config.js file.
+
+Open a command interface and type 'cd backend' to change directory to the backend folder.
+Type 'npm install' to install the dependencies.
+Type 'npx sequelize-cli db:create'  to create the database.
+Type 'npx sequelize-cli db:migrate' to migrate the database.
+and type 'npx sequelize-cli db:seed:all' to seed the database.
+
+Type 'npm run dev' to start the backend server.
+
+## Setting Up Frontend
+(EVERYTHING IN HERE IS IN THE FRONTEND FILE)
+Open a command interface and type 'cd frontend' to change directory to the frontend folder.
+Type 'npm install' to install the dependencies.
+Type 'npm run dev' to start the frontend server.
+
+## Testing
+Open your browser and navigate to localhost:5173 (or whatever port you otherwise specified).
+Test the features!
+
