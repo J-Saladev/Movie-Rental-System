@@ -3,6 +3,7 @@ const app = express()
 const router = express.Router()
 const db = require('../models/index.js')
 
+
 router.get('/', async (req, res) => {
 
     const users = await db.users.findAll()
@@ -27,13 +28,13 @@ router.get('/:id', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
-    console.log(req.body)
+    
     
     try{
 
         await db.users.create(req.body)
 
-        res.send('Movie created'  + req.body)
+        res.send('User created'  + req.body)
     } catch(err){
         res.send(err)
     }
@@ -44,7 +45,7 @@ router.put('/:id', async (req, res) => {
 
     try {
         await db.users.update(req.body)
-        res.send(`Movie updated`)
+        res.send(`User updated`)
     } catch(err) {
         res.send(err)
     }
@@ -57,7 +58,7 @@ router.delete('/:id', async (req, res) => {
         await db.users.destroy({
         where: {id: req.params.id}
     })
-    res.send('Movie deleted')
+    res.send('User deleted')
 
     } catch(err) {
         res.send(err)

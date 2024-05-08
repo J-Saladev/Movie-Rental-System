@@ -1,3 +1,4 @@
+/* A model for the rentals table. */
 'use strict';
 const {
   Model

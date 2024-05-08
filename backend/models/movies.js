@@ -1,3 +1,4 @@
+/* A model for the movies table. */
 'use strict';
 const {
   Model

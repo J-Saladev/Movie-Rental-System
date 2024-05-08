@@ -1,3 +1,4 @@
+/* A model for the users table. */
 'use strict';
 const {
   Model

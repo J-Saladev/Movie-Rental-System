@@ -1,3 +1,4 @@
+/*A "seeder" to seed the users table. (Holds demo data)*/
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
