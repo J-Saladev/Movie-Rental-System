@@ -1,0 +1,9 @@
+///////////////////////////////////////////////////////////////////////////////////////////////////
+Hello! I began this project so I could learn how to make my programs easier to work on for other 
+developers. I use sequelize so that other developers don't have to make a database from scratch, 
+and so when I make a change anyone who has previously set it up is able to update it easily.
+This is a full stack application using Vue.JS, Express.JS, and MySQL.
+
+## How to use
+
+**** Currently in progress ****
