@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import homePage from '@/components/home-page.vue'
 import addObject from '@/components/modules/add-object.vue'
+import viewObject from '@/components/modules/view-object.vue'
 
 
 
@@ -20,7 +21,7 @@ const router = createRouter({
     {
         path: '/view/:section',
         name:'view',
-        component: addObject
+        component: viewObject
     }
 
    

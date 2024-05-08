@@ -7,10 +7,14 @@
                 <div class="form-container">
                     <form section="form" class="form" >
                         <div v-for="item in table" :key="item">
-                        <div v-if="item == 'createdAt' || item == 'updatedAt'"></div>
+                        <div v-if="item == 'createdAt' || item == 'updatedAt' || item == 'id'" ></div>
                         <div class="form-group" v-else>
                             <label for="item" style="text-transform: capitalize;">{{item}}</label>
-                            <input type="text" class="form-control" v-model="inputobject[item]" required>
+                            <select v-if="table[item] == 'premiere' || table[item] == 'availablity'" class="form-control" v-model="inputobject[item]" required>
+                                <option value="true">true</option>
+                                <option value="false">false</option>
+                            </select>
+                            <input  v-else type="text" class="form-control" v-model="inputobject[item]" required>
                         </div>
                         </div>
                         <button type="submit" class="btn btn-primary" @click="HandleSubmit">Submit</button>
@@ -25,20 +29,22 @@
 
 <script setup>
 import axios from 'axios'
-import { ref, onMounted, watch} from 'vue'
+import { ref, onMounted, watch, computed} from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
-const name = ref(route.params.section) 
+const name = computed(() =>{  return route.params.section})
 const table = ref([])
 onMounted(async () => {
     loadData(name.value).then((data) => {
         table.value = data
+        console.log(table.value)
     })
     
 })
 
-watch(route.params, async (newSection, oldSection) => {
+
+watch(name,  async (newSection, oldSection) => {
     console.log('page change')
     name.value = route.params.section
     loadData(newSection).then((data) => {
@@ -83,16 +89,17 @@ async function loadData(section) {
 
 const HandleSubmit = (event) => {
     event.preventDefault()
-    let form = document.getElementById('form')
+    let form = event.target
     
-    if (!form.checkValsectionity()) {
-        form.classList.add('was-valsectionated')
-        form.reportValsectionity()
+    if (!form.checkValidity()) {
+        form.classList.add('was-validated')
+        form.reportValidity()
         return
     }
     console.log(inputobject.value);
     axios.post(`http://localhost:3000/${name.value}`, inputobject.value).then(() => {
         alert('Added successfully')
+        window.location.reload()
     }).catch((error) => {
         console.log(error)
     })
