@@ -1,17 +1,20 @@
 <template>
 <div>
-    <table class="table ">
+    <div style="opacity: 0%;">why</div>
+    <div class="container">
+    <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th scope="col" v-for="item in Object.keys(table[0])" :key="item">#</th>
+                <th v-for="item in keyvalues" :key="item" style="text-transform: capitalize;">{{item}}</th>
             </tr>
         </thead>
         <tbody>
-            <!-- <tr v-for="row in table" :key="row">
-                <td v-for="item in Object.keys(row)" :key="item">{{row[item]}}</td>
-            </tr> -->
+            <tr v-for="item in table" :key="item">
+                <td v-for="key in keyvalues" :key="key">{{item[key]}}</td>
+            </tr>
         </tbody>
     </table>
+    </div >
 </div>
 </template>
 
@@ -23,10 +26,15 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const name = computed(() =>{  return route.params.section})
 const table = ref([])
+const keyvalues = ref([])
+
 onMounted(async () => {
     loadData(name.value).then((data) => {
         table.value = data
-        console.log(table.value)
+        keyvalues.value = Object.keys(data[0])
+    
+        
+    
     })
     
 })
@@ -37,6 +45,9 @@ watch(name,  async (newSection, oldSection) => {
     name.value = route.params.section
     loadData(newSection).then((data) => {
         table.value = data
+        keyvalues.value = Object.keys(data[0])
+        
+        
     }).catch((error) => {
         console.log(error)
     })
@@ -48,12 +59,13 @@ watch(name,  async (newSection, oldSection) => {
 async function loadData(section) {
   try {
     const response = await axios.get(`http://localhost:3000/${section}`)
+    console.log(response.data)
    
     
-    return response
+    return response.data
   } catch (error) {
     console.log(error)
-    return []
+   
   }
 }
 </script>
@@ -61,5 +73,12 @@ async function loadData(section) {
 <style scoped>
 table {
     width: 100%;
+    
+}
+
+.container {
+    margin-top: 2rem;
+    box-shadow: black;
+    
 }
 </style>
