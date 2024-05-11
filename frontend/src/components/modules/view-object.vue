@@ -6,11 +6,18 @@
         <thead>
             <tr>
                 <th v-for="item in keyvalues" :key="item" style="text-transform: capitalize;">{{item}}</th>
+                <th>Edit</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="item in table" :key="item">
                 <td v-for="key in keyvalues" :key="key">{{item[key]}}</td>
+                <td>
+                    <router-link :to="`/edit/${name}/${item.id}`" ><i class="fa-solid fa-file-pen text-light" style="cursor: pointer;"></i></router-link>
+                    <i class="fa-solid fa-trash text-danger" @click="deleteItem(item.id)" style="cursor: pointer;"></i>
+                </td>
+                
+                
             </tr>
         </tbody>
     </table>
@@ -67,6 +74,21 @@ async function loadData(section) {
     console.log(error)
    
   }
+}
+
+function deleteItem(id) {
+    if (confirm('Are you sure you want to delete this item?') ) {
+        axios.delete(`http://localhost:3000/${name.value}/${id}`).then(() => {
+            alert ('Deleted successfully')
+            window.location.reload()
+            
+        }).catch((error) => {
+            console.log(error)
+        })
+    }
+    
+       
+    
 }
 </script>
 
